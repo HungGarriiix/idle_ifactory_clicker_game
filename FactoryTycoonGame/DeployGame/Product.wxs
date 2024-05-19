@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="DeployGame" Language="1033" Version="1.0.0.0" Manufacturer="Nguyen Tien Hung" UpgradeCode="474c9d55-e59f-45a1-a7e4-103d30dbb12c">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="DeployGame" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="DeployGame" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="FactoryTycoonGame.exe" Guid="F290D133-9618-4004-9030-E8A4524227A4" >
+        <File Name="FactoryTycoonGame.exe" Source="$(var.FactoryTycoonGame.TargetDir)FactoryTycoonGame.exe"></File>
+      </Component>
+      <Component Id="FactoryTycoonLibrary.dll" Guid="93832985-11CF-4BC2-98F3-460F2E48D8EA" >
+        <File Name="FactoryTycoonLibrary.dll" Source="$(var.FactoryTycoonGame.TargetDir)FactoryTycoonLibrary.dll"></File>
+      </Component>
+
+    </ComponentGroup>
+	</Fragment>
+</Wix>
